@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+import homepage.views as hompage_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'&', hompage_views.main),
+    url(r'^photo/', hompage_views.upload_photo),
 ]
