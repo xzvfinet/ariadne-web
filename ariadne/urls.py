@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
+
 import homepage.views as hompage_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'&', hompage_views.main),
-    url(r'^photo/', hompage_views.upload_photo),
-]
+    url(r'^$', hompage_views.main),
+    url(r'^photo/$', hompage_views.upload_photo, name='new_photo'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

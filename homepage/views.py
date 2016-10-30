@@ -11,9 +11,12 @@ def upload_photo(request):
         form = PhotoUploadForm(request.POST, request.FILES)
         if form.is_valid():
             # file is saved
-            form.save()
-            return HttpResponseRedirect('/success/url/')
+            photo = form.save()
+            return render(request, 'view.html', {'photo_url': photo.image_file.url})
+            # return HttpResponseRedirect('/')
     else:
         form = PhotoUploadForm()
+
     return render(request, 'upload.html', {'form': form})
+
 
